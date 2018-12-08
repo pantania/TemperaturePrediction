@@ -1,2 +1,0 @@
-# TemperaturePrediction
-2018
