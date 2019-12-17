@@ -1,0 +1,32 @@
+1. 	Install and run Python prompt
+
+2.	Use following command to install MySQL server and the Python bindings for MySQL:
+sudo apt-get install mysql-server python-mysqldb
+
+3.	Create a database with name 'temps'
+$ mysql -u root -p
+Enter password:
+mysql> CREATE DATABASE temps
+mysql> USE temps
+
+4.	Create a database user and give access to the database
+mysql> CREATE USER 'monitor'@'localhost' IDENTIFIED BY 'password';
+mysql> GRANT ALL PRIVILEGES ON temps.* TO 'monitor'@'localhost'
+mysql> FLUSH PRIVILEGES;
+mysql> quit
+
+5.	Since the sensor DHT11 is not ready, we need to make sample records.
+
+5.1	Access to MySql and use the database:
+mysql -u monitor -p
+USE temps
+
+5.2	Use following commands to run and enter the path to run the sql file 'testRecords.sql'
+source ~/sourcecode/testRecords.sql
+5.3	After sample records are generated, use Ctrl+C to get out from MySQL.
+
+6.	Use following commands to install numpy, scipy libraries
+python -m pip install --user numpy scipy
+
+7.	Direct to the sourcode path and run Scheduler.py
+python Scheduler.py
